@@ -11,6 +11,7 @@ import (
 	"fyne.io/fyne/v2/container"
 	"fyne.io/fyne/v2/layout"
 	"fyne.io/fyne/v2/widget"
+	"github.com/Sparpvp/VikingsStatsCalc/math"
 )
 
 var (
@@ -126,7 +127,8 @@ func main() {
 	generalButton := &widget.Form{
 		SubmitText: "Calculate",
 		OnSubmit: func() {
-			fmt.Println("shish")
+			winner := math.TroopPower(attackEntry, defenceEntry, healthEntry, troopsEntry, attackDefenderEntry, defenceDefenderEntry, healthDefenderEntry, troopsDefenderEntry)
+			fmt.Println("the winner is: ", winner)
 		},
 	}
 

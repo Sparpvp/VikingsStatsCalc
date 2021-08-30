@@ -22,7 +22,7 @@ var (
 	winner           string
 )
 
-func troopPower(aE *widget.Entry, dE *widget.Entry, hE *widget.Entry, tE *widget.Entry, aDE *widget.Entry, dDE *widget.Entry, hDE *widget.Entry, tDE *widget.Entry) string {
+func TroopPower(aE *widget.Entry, dE *widget.Entry, hE *widget.Entry, tE *widget.Entry, aDE *widget.Entry, dDE *widget.Entry, hDE *widget.Entry, tDE *widget.Entry) string {
 	attackEntryText, defenceEntryText, healthEntryText, troopsEntryText, attackDefenderEntryText, defenceDefenderEntryText, healthDefenderEntryText, troopsDefenderEntryText := utils.StrToInt(aE, dE, hE, tE, aDE, dDE, hDE, tDE)
 
 	powerAttacker = uint32(attackEntryText) + uint32(defenceEntryText) + uint32(healthEntryText)
