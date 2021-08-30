@@ -126,7 +126,7 @@ func main() {
 	generalButton := &widget.Form{
 		SubmitText: "Calculate",
 		OnSubmit: func() {
-			fmt.Println(attackDefenderEntry.Text)
+			fmt.Println("shish")
 		},
 	}
 

@@ -1,4 +1,4 @@
-package utilss
+package utils
 
 import (
 	"log"
@@ -7,7 +7,7 @@ import (
 	"fyne.io/fyne/v2/widget"
 )
 
-func strToInt(aE *widget.Entry, dE *widget.Entry, hE *widget.Entry, tE *widget.Entry, aDE *widget.Entry, dDE *widget.Entry, hDE *widget.Entry, tDE *widget.Entry) (int, int, int, int, int, int, int, int) {
+func StrToInt(aE *widget.Entry, dE *widget.Entry, hE *widget.Entry, tE *widget.Entry, aDE *widget.Entry, dDE *widget.Entry, hDE *widget.Entry, tDE *widget.Entry) (int, int, int, int, int, int, int, int) {
 	attackEntryTextI, err := strconv.Atoi(aE.Text)
 	if err != nil {
 		log.Fatalln(err)
