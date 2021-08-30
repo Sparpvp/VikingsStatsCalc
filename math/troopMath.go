@@ -12,7 +12,7 @@ var (
 	powerDefender    uint32
 	troopsStronger   uint32
 	troopsWeaker     uint32
-	equalTroopNeeded uint64
+	EqualTroopNeeded uint64
 	powerTrAttacker  uint64
 	powerTrDefender  uint64
 	powerTrStronger  uint64
@@ -22,7 +22,7 @@ var (
 	winner           string
 )
 
-func TroopPower(aE *widget.Entry, dE *widget.Entry, hE *widget.Entry, tE *widget.Entry, aDE *widget.Entry, dDE *widget.Entry, hDE *widget.Entry, tDE *widget.Entry) string {
+func WinnerCalc(aE *widget.Entry, dE *widget.Entry, hE *widget.Entry, tE *widget.Entry, aDE *widget.Entry, dDE *widget.Entry, hDE *widget.Entry, tDE *widget.Entry) string {
 	attackEntryText, defenceEntryText, healthEntryText, troopsEntryText, attackDefenderEntryText, defenceDefenderEntryText, healthDefenderEntryText, troopsDefenderEntryText := utils.StrToInt(aE, dE, hE, tE, aDE, dDE, hDE, tDE)
 
 	powerAttacker = uint32(attackEntryText) + uint32(defenceEntryText) + uint32(healthEntryText)
@@ -50,9 +50,9 @@ func TroopPower(aE *widget.Entry, dE *widget.Entry, hE *widget.Entry, tE *widget
 		weakerString = "Defender"
 	}
 
-	equalTroopNeeded = powerTrStronger / uint64(powerWeaker) // The attacker/defender DOESN'T HAVE THIS AMOUNT OF TROOPS
+	EqualTroopNeeded = powerTrStronger / uint64(powerWeaker) // The attacker/defender DOESN'T HAVE THIS AMOUNT OF TROOPS
 
-	if equalTroopNeeded < uint64(troopsWeaker) {
+	if EqualTroopNeeded < uint64(troopsWeaker) {
 		winner = weakerString
 	} else {
 		winner = strongerString

@@ -127,8 +127,9 @@ func main() {
 	generalButton := &widget.Form{
 		SubmitText: "Calculate",
 		OnSubmit: func() {
-			winner := math.TroopPower(attackEntry, defenceEntry, healthEntry, troopsEntry, attackDefenderEntry, defenceDefenderEntry, healthDefenderEntry, troopsDefenderEntry)
+			winner := math.WinnerCalc(attackEntry, defenceEntry, healthEntry, troopsEntry, attackDefenderEntry, defenceDefenderEntry, healthDefenderEntry, troopsDefenderEntry)
 			fmt.Println("the winner is: ", winner)
+			fmt.Println("(dbg) equal troop needed:", math.EqualTroopNeeded)
 		},
 	}
 
