@@ -1,0 +1,37 @@
+Tests to confirm the program quality
+Implementing losses number soon
+
+Attacker:
+atk: 106
+def: 100
+hea: 101
+tr: 100
+-----------------
+Defender:
+atk: 110
+def: 100
+hea: 101
+tr: 60
+
+Program verdict: "the winner is: Attacker" -> correct 
+
+========================================================
+
+Attacker: 
+110
+100
+101
+tr: 100
+-----------------
+Defender:
+110
+100
+101
+tr: 123
+
+losses attacker: 80/100 
+losses defender: 70/123
+
+Program verdict: "the winner is: Defender" -> correct
+
+=======================================================

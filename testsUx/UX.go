@@ -1,3 +1,5 @@
+// Nothing to see here u.u
+
 package main
 
 import (
