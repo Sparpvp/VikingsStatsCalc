@@ -6,7 +6,7 @@ func Losses(aE *widget.Entry, dE *widget.Entry, hE *widget.Entry, tE *widget.Ent
 	p := PlayersEntity{}
 	//e := EntryTexts{}
 
-	
+	// in development
 
 	return &p
 }
