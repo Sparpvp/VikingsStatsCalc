@@ -11,7 +11,7 @@ import (
 	"fyne.io/fyne/v2/container"
 	"fyne.io/fyne/v2/layout"
 	"fyne.io/fyne/v2/widget"
-	"github.com/Sparpvp/VikingsStatsCalc/math"
+	"github.com/Sparpvp/VikingsStatsCalc/troopMath"
 )
 
 var (
@@ -127,9 +127,9 @@ func main() {
 	generalButton := &widget.Form{
 		SubmitText: "Calculate",
 		OnSubmit: func() {
-			winner := math.WinnerCalc(attackEntry, defenceEntry, healthEntry, troopsEntry, attackDefenderEntry, defenceDefenderEntry, healthDefenderEntry, troopsDefenderEntry)
-			fmt.Println("the winner is: ", winner)
-			fmt.Println("(dbg) equal troop needed:", math.EqualTroopNeeded)
+			entity := troopMath.WinnerCalc(attackEntry, defenceEntry, healthEntry, troopsEntry, attackDefenderEntry, defenceDefenderEntry, healthDefenderEntry, troopsDefenderEntry)
+			fmt.Println("the winner is: ", entity.Winner)
+			fmt.Println("(dbg) equal troop needed:", entity.EqualTroopNeeded)
 		},
 	}
 
