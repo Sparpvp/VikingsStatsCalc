@@ -60,5 +60,21 @@ func WinnerCalc(aE *widget.Entry, dE *widget.Entry, hE *widget.Entry, tE *widget
 		p.Winner = p.strongerString
 	}
 
-	return &PlayersEntity{}
+	p = PlayersEntity{
+		powerWeaker:      p.powerWeaker,
+		powerStronger:    p.powerStronger,
+		powerAttacker:    p.powerAttacker,
+		powerDefender:    p.powerDefender,
+		troopsStronger:   p.troopsStronger,
+		EqualTroopNeeded: p.EqualTroopNeeded,
+		powerTrAttacker:  p.powerTrAttacker,
+		powerTrDefender:  p.powerTrDefender,
+		powerTrStronger:  p.powerTrStronger,
+		powerTrWeaker:    p.powerTrWeaker,
+		strongerString:   p.strongerString,
+		weakerString:     p.weakerString,
+		Winner:           p.Winner,
+	}
+
+	return &p
 }
