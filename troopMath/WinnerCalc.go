@@ -5,6 +5,7 @@ import (
 	"github.com/Sparpvp/VikingsStatsCalc/strUtils"
 )
 
+// All the values needed to calculate the verdict of the battle
 type PlayersEntity struct {
 	powerWeaker       uint32
 	powerStronger     uint32
@@ -27,6 +28,7 @@ type PlayersEntity struct {
 	LossesDefender    uint32
 }
 
+// GUI Objects with int value
 type EntryTexts struct {
 	attackEntryText          int
 	defenceEntryText         int
