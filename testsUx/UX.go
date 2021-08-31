@@ -13,7 +13,7 @@ import (
 	"fyne.io/fyne/v2/container"
 	"fyne.io/fyne/v2/layout"
 	"fyne.io/fyne/v2/widget"
-	"github.com/Sparpvp/VikingsStatsCalc/troopMath"
+	//"github.com/Sparpvp/VikingsStatsCalc/troopMath"
 )
 
 var (
@@ -149,7 +149,7 @@ func main() {
 	// Render
 
 	myWindow.SetContent(containerBox)
-	fixedSize := fyne.NewSize(700, 400)
+	fixedSize := fyne.NewSize(700, 450)
 	myWindow.Resize(fixedSize) // Switch between Tiling Mode -> Floating Mode waste this a bit
 	myWindow.ShowAndRun()
 }
