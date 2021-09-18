@@ -107,12 +107,12 @@ func main() {
 		if value == "Manual Decrease Set" {
 			bDefenderDecrease = true
 			bDefenderPalacelvl = false
-			go addNew(bDefenderDecrease, bDefenderPalacelvl, decreaseDefenderEntry, palacelvlDefenderEntry, influenceDefenderEntry)
+			addNew(bDefenderDecrease, bDefenderPalacelvl, decreaseDefenderEntry, palacelvlDefenderEntry, influenceDefenderEntry)
 		}
 		if value == "AI Decrease Calc" {
 			bDefenderPalacelvl = true
 			bDefenderDecrease = false
-			go addNew(bDefenderDecrease, bDefenderPalacelvl, decreaseDefenderEntry, palacelvlDefenderEntry, influenceDefenderEntry)
+			addNew(bDefenderDecrease, bDefenderPalacelvl, decreaseDefenderEntry, palacelvlDefenderEntry, influenceDefenderEntry)
 		}
 	})
 	decreaseDefender.PlaceHolder = "Decrease"
