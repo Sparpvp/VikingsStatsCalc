@@ -14,13 +14,12 @@ import (
 	"github.com/Sparpvp/VikingsStatsCalc/src/troopMath"
 )
 
-func addNew(bDec bool, bPal bool, dEntry *widget.Entry, pEntry *widget.Entry, iEntry *widget.Entry) {
-	if bDec {
+func addNew(isDecrease bool, dEntry *widget.Entry, pEntry *widget.Entry, iEntry *widget.Entry) {
+	if isDecrease { // Decrease
 		dEntry.Show()
 		pEntry.Hide()
 		iEntry.Hide()
-	}
-	if bPal {
+	} else { // PalaceLevel
 		dEntry.Hide()
 		pEntry.Show()
 		iEntry.Show()
@@ -32,9 +31,6 @@ func main() {
 	myWindow := myApp.NewWindow("Vikings Stat")
 
 	// Attacker Part
-
-	var bDecrease bool = false
-	var bPalacelvl bool = false
 
 	// Attacker Entries Init
 	decreaseEntry := widget.NewEntry()
@@ -62,22 +58,15 @@ func main() {
 	element.PlaceHolder = "Element Calculation"
 	decrease := widget.NewSelect([]string{"Manual Decrease Set", "AI Decrease Calc"}, func(value string) {
 		if value == "Manual Decrease Set" {
-			bDecrease = true
-			bPalacelvl = false
-			addNew(bDecrease, bPalacelvl, decreaseEntry, palacelvlEntry, influenceEntry)
+			addNew(true, decreaseEntry, palacelvlEntry, influenceEntry)
 		}
 		if value == "AI Decrease Calc" {
-			bPalacelvl = true
-			bDecrease = false
-			addNew(bDecrease, bPalacelvl, decreaseEntry, palacelvlEntry, influenceEntry)
+			addNew(false, decreaseEntry, palacelvlEntry, influenceEntry)
 		}
 	})
 	decrease.PlaceHolder = "Decrease"
 
 	// Defender Part
-
-	var bDefenderDecrease bool = false
-	var bDefenderPalacelvl bool = false
 
 	// Defender Entries Init
 	decreaseDefenderEntry := widget.NewEntry()
@@ -105,14 +94,10 @@ func main() {
 	elementDefender.PlaceHolder = "Element Calculation"
 	decreaseDefender := widget.NewSelect([]string{"Manual Decrease Set", "AI Decrease Calc"}, func(value string) {
 		if value == "Manual Decrease Set" {
-			bDefenderDecrease = true
-			bDefenderPalacelvl = false
-			addNew(bDefenderDecrease, bDefenderPalacelvl, decreaseDefenderEntry, palacelvlDefenderEntry, influenceDefenderEntry)
+			addNew(true, decreaseDefenderEntry, palacelvlDefenderEntry, influenceDefenderEntry)
 		}
 		if value == "AI Decrease Calc" {
-			bDefenderPalacelvl = true
-			bDefenderDecrease = false
-			addNew(bDefenderDecrease, bDefenderPalacelvl, decreaseDefenderEntry, palacelvlDefenderEntry, influenceDefenderEntry)
+			addNew(false, decreaseDefenderEntry, palacelvlDefenderEntry, influenceDefenderEntry)
 		}
 	})
 	decreaseDefender.PlaceHolder = "Decrease"
