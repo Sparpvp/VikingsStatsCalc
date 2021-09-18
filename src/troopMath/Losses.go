@@ -108,35 +108,29 @@ func LossesCalc(aE *widget.Entry, dE *widget.Entry, hE *widget.Entry, tE *widget
 		}
 	}
 
-	var flag bool = false
-
 	if p.Winner == l.AdvantagePlayerSat {
 		if l.LossesFWinner == "Attacker" {
 			if p.StrongerString == "Attacker" {
-				p.LossesAttacker = float64(float32(l.EightyCTTrAttacker) - ((float32(l.EightyCTTrAttacker)*l.SaturationC)/10000)*l.MinusLossSat)
-				p.LossesAttacker = p.LossesAttacker / float64(p.PowerAttacker)
+				p.LossesAttacker = float64(float32(p.EightyCTrDefender) - ((float32(p.EightyCTrDefender)*l.SaturationC)/10000)*l.MinusLossSat)
+				p.LossesAttacker = p.LossesAttacker * float64(p.PowerDefender) / float64(p.PowerAttacker)
 				p.LossesDefender = float64(p.EightyCTrDefender)
 				p.RWinner = "Attacker"
-				flag = true // unreal ineffassign warning
+			} else {
+				// If the Attacker is not advantaged statistically the calculation will be the normal one
+				p.LossesAttacker = float64(float32(p.EightyCTrAttacker) - ((float32(p.EightyCTrAttacker)*l.SaturationC)/10000)*l.MinusLossSat)
+				p.LossesDefender = float64(p.EightyCTrDefender)
+				p.RWinner = "Attacker"
 			}
-			// If the Attacker is not advantaged statistically the calculation will be the normal one
-			p.LossesAttacker = float64(float32(p.EightyCTrAttacker) - ((float32(p.EightyCTrAttacker)*l.SaturationC)/10000)*l.MinusLossSat)
-			p.LossesDefender = float64(p.EightyCTrDefender)
-			p.RWinner = "Attacker"
-			flag = true
+		} else if p.StrongerString == "Defender" {
+			p.LossesDefender = float64(float32(p.EightyCTrDefender) - ((float32(p.EightyCTrDefender)*l.SaturationC)/10000)*l.MinusLossSat)
+			p.LossesDefender = p.LossesDefender * float64(p.PowerAttacker) / float64(p.PowerDefender)
+			p.LossesAttacker = float64(p.EightyCTrAttacker)
+			p.RWinner = "Defender"
 		} else {
-			if p.StrongerString == "Defender" {
-				p.LossesDefender = float64(float32(l.EightyCTTrDefender) - ((float32(l.EightyCTTrDefender)*l.SaturationC)/10000)*l.MinusLossSat)
-				p.LossesDefender = p.LossesDefender / float64(p.PowerDefender)
-				p.LossesAttacker = float64(p.EightyCTrAttacker)
-				p.RWinner = "Defender"
-				flag = true // unreal ineffassign warning
-			}
 			// If the Defender is not advantaged statistically the calculation will be the normal one
 			p.LossesAttacker = float64(p.EightyCTrAttacker)
 			p.LossesDefender = float64(float32(p.EightyCTrAttacker) - ((float32(p.EightyCTrAttacker)*l.SaturationC)/10000)*l.MinusLossSat)
 			p.RWinner = "Defender"
-			flag = true
 		}
 	} else if l.LossesFLoser == "Attacker" {
 		if p.StrongerString == "Attacker" {
@@ -156,15 +150,12 @@ func LossesCalc(aE *widget.Entry, dE *widget.Entry, hE *widget.Entry, tE *widget
 			l.AdvantageTTroops = uint32(p.EqualTroopNeeded)
 			l.AdvantagedPlayer = "Attacker"
 		}
-	}
+		if l.AdvantageTTroops < l.UnadvantageTTroops {
+			p.RWinner = l.UnadvantagedPlayer
+		} else {
+			p.RWinner = l.AdvantagedPlayer
+		}
 
-	if l.AdvantageTTroops < l.UnadvantageTTroops {
-		p.RWinner = l.UnadvantagedPlayer
-	} else {
-		p.RWinner = l.AdvantagedPlayer
-	}
-
-	if !flag {
 		if p.RWinner == "Attacker" {
 			if p.StrongerString == "Attacker" {
 				p.LossesDefender = float64(p.EightyCTrDefender)
