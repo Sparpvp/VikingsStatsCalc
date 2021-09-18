@@ -2,7 +2,7 @@ package troopMath
 
 import (
 	"fyne.io/fyne/v2/widget"
-	"github.com/Sparpvp/VikingsStatsCalc/strUtils"
+	"github.com/Sparpvp/VikingsStatsCalc/src/strUtils"
 )
 
 // All the values needed to calculate the verdict of the battle

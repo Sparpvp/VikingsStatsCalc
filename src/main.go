@@ -11,7 +11,7 @@ import (
 	"fyne.io/fyne/v2/container"
 	"fyne.io/fyne/v2/layout"
 	"fyne.io/fyne/v2/widget"
-	"github.com/Sparpvp/VikingsStatsCalc/troopMath"
+	"github.com/Sparpvp/VikingsStatsCalc/src/troopMath"
 )
 
 func addNew(bDec bool, bPal bool, dEntry *widget.Entry, pEntry *widget.Entry, iEntry *widget.Entry) {
