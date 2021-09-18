@@ -64,12 +64,12 @@ func main() {
 		if value == "Manual Decrease Set" {
 			bDecrease = true
 			bPalacelvl = false
-			go addNew(bDecrease, bPalacelvl, decreaseEntry, palacelvlEntry, influenceEntry)
+			addNew(bDecrease, bPalacelvl, decreaseEntry, palacelvlEntry, influenceEntry)
 		}
 		if value == "AI Decrease Calc" {
 			bPalacelvl = true
 			bDecrease = false
-			go addNew(bDecrease, bPalacelvl, decreaseEntry, palacelvlEntry, influenceEntry)
+			addNew(bDecrease, bPalacelvl, decreaseEntry, palacelvlEntry, influenceEntry)
 		}
 	})
 	decrease.PlaceHolder = "Decrease"
