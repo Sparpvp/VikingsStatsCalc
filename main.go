@@ -11,16 +11,17 @@ import (
 	"fyne.io/fyne/v2/container"
 	"fyne.io/fyne/v2/layout"
 	"fyne.io/fyne/v2/widget"
+	"github.com/Sparpvp/VikingsStatsCalc/src/entriesUtils"
 	"github.com/Sparpvp/VikingsStatsCalc/src/troopMath"
 )
 
-func addNew(isDecrease bool, dEntry *widget.Entry, pEntry *widget.Entry, iEntry *widget.Entry) {
+func addNew(isDecrease bool, dEntries *troopMath.DecreaseEntries, pEntry *widget.Entry, iEntry *widget.Entry) {
 	if isDecrease { // Decrease
-		dEntry.Show()
+		entriesUtils.ShowEntries(dEntries)
 		pEntry.Hide()
 		iEntry.Hide()
 	} else { // PalaceLevel
-		dEntry.Hide()
+		entriesUtils.HideEntries(dEntries)
 		pEntry.Show()
 		iEntry.Show()
 	}
@@ -33,12 +34,15 @@ func main() {
 	// Attacker Part
 
 	// Attacker Entries Init
-	decreaseEntry := widget.NewEntry()
-	decreaseEntry.Hide()
+	d := &troopMath.DecreaseEntries{}
+	dEntries := entriesUtils.InitEntries(d)
+	entriesUtils.HideEntries(dEntries)
 	palacelvlEntry := widget.NewEntry()
 	palacelvlEntry.Hide()
+	palacelvlEntry.PlaceHolder = "Palace Level"
 	influenceEntry := widget.NewEntry()
 	influenceEntry.Hide()
+	influenceEntry.PlaceHolder = "Influence"
 
 	attackEntry := widget.NewEntry()
 	defenceEntry := widget.NewEntry()
@@ -64,10 +68,10 @@ func main() {
 	decrease := widget.NewSelect([]string{"Manual Decrease Set", "AI Decrease Calc"}, func(value string) {
 		switch value {
 		case "Manual Decrease Set":
-			addNew(true, decreaseEntry, palacelvlEntry, influenceEntry)
+			addNew(true, dEntries, palacelvlEntry, influenceEntry)
 
 		case "AI Decrease Calc":
-			addNew(false, decreaseEntry, palacelvlEntry, influenceEntry)
+			addNew(false, dEntries, palacelvlEntry, influenceEntry)
 		}
 	})
 	decrease.PlaceHolder = "Decrease"
@@ -75,20 +79,19 @@ func main() {
 	// Defender Part
 
 	// Defender Entries Init
-	decreaseDefenderEntry := widget.NewEntry()
-	decreaseDefenderEntry.Hide()
 	palacelvlDefenderEntry := widget.NewEntry()
-	palacelvlDefenderEntry.Hide()
 	influenceDefenderEntry := widget.NewEntry()
+	palacelvlDefenderEntry.PlaceHolder = "Palace Level"
+	influenceDefenderEntry.PlaceHolder = "Influence"
+	palacelvlDefenderEntry.Hide()
 	influenceDefenderEntry.Hide()
-
 	attackDefenderEntry := widget.NewEntry()
 	defenceDefenderEntry := widget.NewEntry()
 	healthDefenderEntry := widget.NewEntry()
 	troopsDefenderEntry := widget.NewEntry()
 
-	formDefender := &widget.Form {
-		Items: []*widget.FormItem {
+	formDefender := &widget.Form{
+		Items: []*widget.FormItem{
 			{
 				Text: "Attack: ", Widget: attackDefenderEntry,
 			},
@@ -103,16 +106,12 @@ func main() {
 		log.Println("Select set to", value)
 	})
 	elementDefender.PlaceHolder = "Element Calculation"
-	decreaseDefender := widget.NewSelect([]string{"Manual Decrease Set", "AI Decrease Calc"}, func(value string) {
-		switch value {
-		case "Manual Decrease Set":
-			addNew(true, decreaseDefenderEntry, palacelvlDefenderEntry, influenceDefenderEntry)
 
-		case "AI Decrease Calc":
-			addNew(false, decreaseDefenderEntry, palacelvlDefenderEntry, influenceDefenderEntry)
-		}
+	AIDecrease := widget.NewSelect([]string{"AI Decrease Calc"}, func(value string) {
+		palacelvlDefenderEntry.Show()
+		influenceDefenderEntry.Show()
 	})
-	decreaseDefender.PlaceHolder = "Decrease"
+	AIDecrease.PlaceHolder = "Decrease"
 
 	// Calculate button
 
@@ -141,8 +140,8 @@ func main() {
 
 	// Container Part
 
-	attackerBox := container.NewVBox(attackerText, form, element, decrease, decreaseEntry, palacelvlEntry, influenceEntry)
-	defenderBox := container.NewVBox(defenderText, formDefender, elementDefender, decreaseDefender, decreaseDefenderEntry, palacelvlDefenderEntry, influenceDefenderEntry)
+	attackerBox := container.NewVBox(attackerText, form, element, decrease, d.DecBefAtk, d.DecBefDef, d.DecBefHea, d.DecAftAtk, d.DecAftkDef, d.DecAftHea, palacelvlEntry, influenceEntry)
+	defenderBox := container.NewVBox(defenderText, formDefender, elementDefender, AIDecrease, palacelvlDefenderEntry, influenceDefenderEntry)
 	generalButtonBox := container.NewCenter(generalButton)
 	containerBox := container.New(layout.NewHBoxLayout(), attackerBox, layout.NewSpacer(), generalButtonBox, layout.NewSpacer(), defenderBox)
 
