@@ -15,19 +15,15 @@ import (
 )
 
 func addNew(bDec bool, bPal bool, dEntry *widget.Entry, pEntry *widget.Entry, iEntry *widget.Entry) {
-	for {
-		if bDec {
-			dEntry.Show()
-			pEntry.Hide()
-			iEntry.Hide()
-			break
-		}
-		if bPal {
-			dEntry.Hide()
-			pEntry.Show()
-			iEntry.Show()
-			break
-		}
+	if bDec {
+		dEntry.Show()
+		pEntry.Hide()
+		iEntry.Hide()
+	}
+	if bPal {
+		dEntry.Hide()
+		pEntry.Show()
+		iEntry.Show()
 	}
 }
 
