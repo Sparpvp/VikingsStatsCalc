@@ -6,7 +6,7 @@ import (
 )
 
 func InitEntries(d *troopMath.DecreaseEntries) *troopMath.DecreaseEntries {
-	// Create Entries
+	// Create Entries & Set Placeholder
 
 	d.DecBefAtk = widget.NewEntry()
 	d.DecBefDef = widget.NewEntry()
