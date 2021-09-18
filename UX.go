@@ -14,13 +14,6 @@ import (
 	"github.com/Sparpvp/VikingsStatsCalc/troopMath"
 )
 
-var (
-	bDecrease          bool = false
-	bPalacelvl         bool = false
-	bDefenderDecrease  bool = false
-	bDefenderPalacelvl bool = false
-)
-
 func addNew(bDec bool, bPal bool, dEntry *widget.Entry, pEntry *widget.Entry, iEntry *widget.Entry) {
 	for {
 		if bDec {
@@ -44,6 +37,9 @@ func main() {
 
 	// Attacker Part
 
+	var bDecrease bool = false
+	var bPalacelvl bool = false
+
 	// Attacker Entries Init
 	decreaseEntry := widget.NewEntry()
 	decreaseEntry.Hide()
@@ -64,7 +60,7 @@ func main() {
 	form.Append("Health:", healthEntry)
 	form.Append("Troops:", troopsEntry)
 
-	element := widget.NewSelect([]string{"Base Stats", "Attack VS"}, func(value string) {
+	element := widget.NewSelect([]string{"Base Stats", "Scout Rapport"}, func(value string) {
 		log.Println("Select set to", value)
 	})
 	element.PlaceHolder = "Element Calculation"
@@ -83,6 +79,9 @@ func main() {
 	decrease.PlaceHolder = "Decrease"
 
 	// Defender Part
+
+	var bDefenderDecrease bool = false
+	var bDefenderPalacelvl bool = false
 
 	// Defender Entries Init
 	decreaseDefenderEntry := widget.NewEntry()
@@ -104,7 +103,7 @@ func main() {
 	formDefender.Append("Health:", healthDefenderEntry)
 	formDefender.Append("Troops:", troopsDefenderEntry)
 
-	elementDefender := widget.NewSelect([]string{"Base Stats", "Attack VS"}, func(value string) {
+	elementDefender := widget.NewSelect([]string{"Base Stats", "Scout Rapport"}, func(value string) {
 		log.Println("Select set to", value)
 	})
 	elementDefender.PlaceHolder = "Element Calculation"
@@ -127,9 +126,14 @@ func main() {
 	generalButton := &widget.Form{
 		SubmitText: "Calculate",
 		OnSubmit: func() {
-			entity := troopMath.WinnerCalc(attackEntry, defenceEntry, healthEntry, troopsEntry, attackDefenderEntry, defenceDefenderEntry, healthDefenderEntry, troopsDefenderEntry)
-			fmt.Println("the winner is: ", entity.Winner)
-			fmt.Println("(dbg) equal troop needed:", entity.EqualTroopNeeded)
+			pEntity := troopMath.WinnerCalc(attackEntry, defenceEntry, healthEntry, troopsEntry, attackDefenderEntry, defenceDefenderEntry, healthDefenderEntry, troopsDefenderEntry)
+			losses := troopMath.LossesCalc(attackEntry, defenceEntry, healthEntry, troopsEntry, attackDefenderEntry, defenceDefenderEntry, healthDefenderEntry, troopsDefenderEntry)
+			fmt.Println("No-Saturation Winner (this result doesn't matter in the game): ", pEntity.Winner)
+			fmt.Println("Final Winner: ", pEntity.RWinner)
+			fmt.Println("Equal Troop Needed: ", pEntity.EqualTroopNeeded)
+			fmt.Println("Attacker's Losses", pEntity.LossesAttacker)
+			fmt.Println("Defender's Losses", pEntity.LossesDefender)
+			fmt.Println("Raw Saturation: ", losses.PercentSat)
 		},
 	}
 

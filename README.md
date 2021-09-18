@@ -9,3 +9,4 @@ Emulate a Vikings War of Clans battle with the real game mechanics and gives you
 
 # Contributors
 _Developed with my man @PixelGodV3_
+
