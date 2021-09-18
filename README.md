@@ -3,7 +3,7 @@ Emulate a Vikings War of Clans battle with the real game mechanics and gives you
 
 # TODO
 - ~~Introduce saturation mechanic~~ - **Done**
-- Introduce losses count (Almost done)
+- ~~Introduce losses count~~ - **Done**
 - Introduce decrease mechanic
 - Instead of Element Calculation introduce Tier->Boosts mechanics
 
