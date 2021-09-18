@@ -44,10 +44,15 @@ func main() {
 	defenceEntry := widget.NewEntry()
 	healthEntry := widget.NewEntry()
 	troopsEntry := widget.NewEntry()
+
 	form := &widget.Form{
 		Items: []*widget.FormItem{
-			{Text: "Attack: ", Widget: attackEntry}},
+			{
+				Text: "Attack: ", Widget: attackEntry,
+			},
+		},
 	}
+
 	form.Append("Defence:", defenceEntry)
 	form.Append("Health:", healthEntry)
 	form.Append("Troops:", troopsEntry)
@@ -57,10 +62,11 @@ func main() {
 	})
 	element.PlaceHolder = "Element Calculation"
 	decrease := widget.NewSelect([]string{"Manual Decrease Set", "AI Decrease Calc"}, func(value string) {
-		if value == "Manual Decrease Set" {
+		switch value {
+		case "Manual Decrease Set":
 			addNew(true, decreaseEntry, palacelvlEntry, influenceEntry)
-		}
-		if value == "AI Decrease Calc" {
+
+		case "AI Decrease Calc":
 			addNew(false, decreaseEntry, palacelvlEntry, influenceEntry)
 		}
 	})
@@ -80,10 +86,15 @@ func main() {
 	defenceDefenderEntry := widget.NewEntry()
 	healthDefenderEntry := widget.NewEntry()
 	troopsDefenderEntry := widget.NewEntry()
-	formDefender := &widget.Form{
-		Items: []*widget.FormItem{
-			{Text: "Attack: ", Widget: attackDefenderEntry}},
+
+	formDefender := &widget.Form {
+		Items: []*widget.FormItem {
+			{
+				Text: "Attack: ", Widget: attackDefenderEntry,
+			},
+		},
 	}
+
 	formDefender.Append("Defence:", defenceDefenderEntry)
 	formDefender.Append("Health:", healthDefenderEntry)
 	formDefender.Append("Troops:", troopsDefenderEntry)
@@ -93,10 +104,11 @@ func main() {
 	})
 	elementDefender.PlaceHolder = "Element Calculation"
 	decreaseDefender := widget.NewSelect([]string{"Manual Decrease Set", "AI Decrease Calc"}, func(value string) {
-		if value == "Manual Decrease Set" {
+		switch value {
+		case "Manual Decrease Set":
 			addNew(true, decreaseDefenderEntry, palacelvlDefenderEntry, influenceDefenderEntry)
-		}
-		if value == "AI Decrease Calc" {
+
+		case "AI Decrease Calc":
 			addNew(false, decreaseDefenderEntry, palacelvlDefenderEntry, influenceDefenderEntry)
 		}
 	})
