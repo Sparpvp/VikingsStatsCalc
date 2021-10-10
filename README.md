@@ -12,11 +12,8 @@ go build .
 go run .
 ```
 # Showcase 
-<p align="center" markdown="1" style="max-width: >
-  <img src="img/main_window.png" width="752" hei>
-</p>
-
-
+![alt text](https://github.com/Sparpvp/VikingsStatsCalc/blob/master/main_window.png?raw=true)
+  
 # TODO
 - ~~Introduce saturation mechanic~~ - **Done**
 - ~~Introduce losses count~~ - **Done**
