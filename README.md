@@ -12,7 +12,7 @@ go build .
 go run .
 ```
 # Showcase 
-![alt text](https://github.com/Sparpvp/VikingsStatsCalc/blob/main/main_window.png?raw=true)
+![alt text](https://github.com/Sparpvp/VikingsStatsCalc/blob/main/img/main_window.png?raw=true)
   
 # TODO
 - ~~Introduce saturation mechanic~~ - **Done**
